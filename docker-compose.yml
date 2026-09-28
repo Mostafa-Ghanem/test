@@ -1,0 +1,66 @@
+# Local development: `docker compose up` → http://localhost:3000 (DEMO_MODE by default)
+# Dev-only secrets below; never reuse them in production.
+x-voice-env: &voice-env
+  VOICE_SHARED_SECRET: dev-voice-shared-secret-123
+  PRIVATECALL_APP_URL: http://app:3000
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: privatecall
+      POSTGRES_PASSWORD: privatecall
+      POSTGRES_DB: privatecall
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U privatecall"]
+      interval: 3s
+      retries: 20
+
+  app:
+    build: .
+    depends_on:
+      postgres: { condition: service_healthy }
+    ports: ["3000:3000"]
+    env_file: [{ path: .env, required: false }]
+    environment:
+      <<: *voice-env
+      DATABASE_URL: postgres://privatecall:privatecall@postgres:5432/privatecall
+      SESSION_SECRET: dev-session-secret-change-me-0123456789abcdef
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@example.com}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin12345!}
+      DEMO_MODE: ${DEMO_MODE:-true}
+      SIP_EXTENSION_SECRET: dev-sip-extension-secret
+      TURN_SECRET: dev-turn-secret
+      TURN_URLS: turn:localhost:3478?transport=udp
+      VOICE_WSS_URL: wss://localhost:8089/ws
+      VOICE_SIP_DOMAIN: localhost
+      VOICE_HEALTH_URL: http://asterisk:8088/httpstatus
+    volumes:
+      - ./src:/app/src
+      - ./db:/app/db
+
+  asterisk:
+    build: infra/asterisk
+    depends_on: [app]
+    environment:
+      <<: *voice-env
+      EXTERNAL_IP: 127.0.0.1
+      VOICE_HOST: coturn
+    ports:
+      - "5060:5060/udp"
+      - "8089:8089"
+      - "10000-10100:10000-10100/udp"
+
+  coturn:
+    image: coturn/coturn:4.6
+    command: ["-n", "--listening-port=3478", "--use-auth-secret", "--static-auth-secret=dev-turn-secret",
+              "--realm=localhost", "--min-port=49160", "--max-port=49200", "--no-tls", "--no-dtls", "--fingerprint"]
+    ports:
+      - "3478:3478/udp"
+      - "3478:3478/tcp"
+      - "49160-49200:49160-49200/udp"
+
+volumes:
+  pgdata:
