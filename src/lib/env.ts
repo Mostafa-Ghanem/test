@@ -15,6 +15,7 @@ export function dialPolicy(): DialPolicy {
 }
 
 export const callsPerMinute = () => Number(process.env.CALLS_PER_MINUTE || 5);
+export const maxCallSeconds = () => Number(process.env.MAX_CALL_SECONDS || 3600);
 export const ratePerMinute = () => Number(process.env.PROVIDER_RATE_PER_MINUTE || 0.02);
 
 export function defaultLimits(): Omit<Limits, "callsPerMinute"> {

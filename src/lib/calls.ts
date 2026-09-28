@@ -3,7 +3,7 @@ import type { PoolClient } from "pg";
 import { q, tx } from "./db";
 import { authorizeDial, parseCallRequest, type UsageSnapshot } from "./authorize";
 import { checkDestination } from "./phone";
-import { callsPerMinute, dialPolicy, isDemo, ratePerMinute } from "./env";
+import { callsPerMinute, dialPolicy, isDemo, maxCallSeconds, ratePerMinute } from "./env";
 import { processCdr, type CdrStore, type FinalizeFields } from "./cdr";
 import type { SessionUser } from "./auth";
 import { formatDialNumber, loadProviderConfig, validateProviderConfig } from "@/providers";
@@ -157,7 +157,7 @@ export async function hangupDemo(call: CallRow) {
 
 /**
  * Called by Asterisk dialplan with the one-time token the browser dialed.
- * Returns a pipe-delimited line: OK|callId|dialNumber|privacy|fromNumber  or  DENY|reason
+ * Returns a pipe-delimited line: OK|callId|dialNumber|privacy|fromNumber|maxSeconds  or  DENY|reason
  */
 export async function voiceAuthorize(token: string, endpoint: string): Promise<string> {
   if (!/^[a-f0-9]{32}$/.test(token) || !/^\d{3,8}$/.test(endpoint)) return "DENY|bad_request";
@@ -173,8 +173,18 @@ export async function voiceAuthorize(token: string, endpoint: string): Promise<s
   );
   const call = rows[0];
   if (!call) return "DENY|not_authorized";
+  // Cap the call length so an answered call cannot run past the user's daily minute limit.
+  const [u] = await q<{ remaining: number }>(
+    `SELECT coalesce(l.daily_minute_limit, 60) * 60 - coalesce(sum(c.billable_seconds), 0)::int AS remaining
+       FROM calls me JOIN usage_limits l ON l.user_id = me.user_id
+       LEFT JOIN calls c ON c.user_id = me.user_id AND c.started_at >= date_trunc('day', now())
+      WHERE me.id = $1 GROUP BY l.daily_minute_limit`,
+    [call.id],
+  );
+  const maxSeconds = Math.min(u?.remaining ?? 0, maxCallSeconds());
+  if (maxSeconds <= 0) return "DENY|daily_minute_limit";
   // Identity is decided here, server-side. Only "private" exists today.
   const privacy = call.caller_identity_mode === "private" && cfg.privacyEnabled ? "1" : "0";
   if (privacy !== "1") return "DENY|privacy_required";
-  return ["OK", call.id, formatDialNumber(call.destination, cfg), privacy, cfg.fromNumber.replace(/^\+/, "")].join("|");
+  return ["OK", call.id, formatDialNumber(call.destination, cfg), privacy, cfg.fromNumber.replace(/^\+/, ""), maxSeconds].join("|");
 }

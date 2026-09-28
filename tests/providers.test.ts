@@ -5,10 +5,12 @@ const base = { SIP_USERNAME: "acct", SIP_PASSWORD: "secret", SIP_FROM_NUMBER: "+
 
 describe("provider configuration validation", () => {
   it("not configured without SIP_PROVIDER", () => expect(validateProviderConfig(loadProviderConfig({}))).toMatchObject({ configured: false }));
-  it("localphone uses adapter defaults", () => {
-    const cfg = loadProviderConfig({ ...base, SIP_PROVIDER: "localphone" })!;
-    expect(cfg.host).toBe("sip.localphone.com");
-    expect(validateProviderConfig(cfg)).toEqual({ configured: true, errors: [] });
+  it("localphone has no guessed defaults: every setting must be explicit", () => {
+    const v = validateProviderConfig(loadProviderConfig({ ...base, SIP_PROVIDER: "localphone" }));
+    expect(v.configured).toBe(false);
+    expect(v.errors.join()).toMatch(/SIP_HOST must be set explicitly/);
+    const lp = { ...base, SIP_PROVIDER: "localphone", SIP_HOST: "sip.example.net", SIP_PORT: "5060", SIP_TRANSPORT: "udp", SIP_DIAL_FORMAT: "e164", SIP_REGISTER: "true" };
+    expect(validateProviderConfig(loadProviderConfig(lp))).toEqual({ configured: true, errors: [] });
   });
   it("telnyx is a drop-in swap", () => expect(validateProviderConfig(loadProviderConfig({ ...base, SIP_PROVIDER: "telnyx" }))).toMatchObject({ configured: true }));
   it("generic-sip requires host", () => {
@@ -33,7 +35,7 @@ describe("provider rendering", () => {
   });
   it("always renders the same trunk name with RFC 3325 privacy", () => {
     for (const p of ["localphone", "telnyx"]) {
-      const conf = renderTrunkPjsip(loadProviderConfig({ ...base, SIP_PROVIDER: p })!);
+      const conf = renderTrunkPjsip(loadProviderConfig({ ...base, SIP_HOST: "sip.example.net", SIP_PROVIDER: p })!);
       expect(conf).toContain(`[${TRUNK_NAME}]`);
       expect(conf).toContain("send_pai=yes");
       expect(conf).toContain("trust_id_outbound=yes");

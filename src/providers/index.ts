@@ -19,6 +19,7 @@ export function loadProviderConfig(env: Env = process.env): ProviderConfig | nul
   const id = (env.SIP_PROVIDER || "").trim().toLowerCase();
   if (!id) return null;
   const d = ADAPTERS[id]?.defaults ?? {};
+  const missingRequired = (ADAPTERS[id]?.requiredEnv ?? []).filter((k) => !env[k]);
   return {
     provider: id,
     host: env.SIP_HOST || d.host || "",
@@ -31,12 +32,14 @@ export function loadProviderConfig(env: Env = process.env): ProviderConfig | nul
     dialFormat: (env.SIP_DIAL_FORMAT || d.dialFormat || "e164") as DialFormat,
     dialPrefix: env.SIP_DIAL_PREFIX || "",
     register: env.SIP_REGISTER ? env.SIP_REGISTER !== "false" : d.register ?? true,
+    missingRequired,
   };
 }
 
 export function validateProviderConfig(cfg: ProviderConfig | null): { configured: boolean; errors: string[] } {
   if (!cfg) return { configured: false, errors: ["SIP_PROVIDER not set"] };
   const e: string[] = [];
+  for (const k of cfg.missingRequired ?? []) e.push(`${k} must be set explicitly for ${cfg.provider}`);
   if (!ADAPTERS[cfg.provider]) e.push(`Unknown SIP_PROVIDER "${cfg.provider}"`);
   if (!cfg.host || !/^[a-zA-Z0-9.-]+$/.test(cfg.host)) e.push("SIP_HOST missing or invalid");
   if (!Number.isInteger(cfg.port) || cfg.port < 1 || cfg.port > 65535) e.push("SIP_PORT invalid");

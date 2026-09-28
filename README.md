@@ -31,7 +31,7 @@ You don't need to touch Asterisk configs, the dialplan or the UI.
 
 ```
 src/providers/
-  localphone/   defaults: sip.localphone.com:5060 udp, dial format "digits"
+  localphone/   defaults: no defaults - every value must be set explicitly
   telnyx/       defaults: sip.telnyx.com:5060 udp, dial format "e164"
   generic-sip/  everything from env
   index.ts      loadProviderConfig / validateProviderConfig / formatDialNumber / renderTrunkPjsip
@@ -109,17 +109,24 @@ The only SIP secret a browser ever gets is **its own extension password**, from 
 - The app must be served over HTTPS so the microphone (getUserMedia) works. Vercel does this by default.
 
 ## Connecting Localphone later
-Set these on Vercel:
-```
-DEMO_MODE=false
-SIP_PROVIDER=localphone
-SIP_USERNAME=<localphone sip username>
-SIP_PASSWORD=<localphone sip password>
-SIP_FROM_NUMBER=<your Localphone number, E.164>
-SIP_PRIVACY_ENABLED=true
-# optional overrides: SIP_HOST, SIP_PORT, SIP_DIAL_FORMAT, SIP_DIAL_PREFIX
-```
-Redeploy. Within about a minute the VM pulls the new `pjsip_provider.conf` and reloads PJSIP.
+The Localphone adapter contains **no assumed values**. Validation refuses to mark the provider configured until every
+setting below is set explicitly. Take each value from the real Localphone account (SIP settings page / support):
+
+| Variable | Obtain from Localphone |
+|---|---|
+| `SIP_HOST` | SIP registrar/proxy hostname |
+| `SIP_PORT` | SIP port |
+| `SIP_TRANSPORT` | `udp`, `tcp` or `tls` |
+| `SIP_USERNAME` / `SIP_PASSWORD` | SIP device credentials |
+| `SIP_FROM_NUMBER` | a number owned by the account (E.164), used only in P-Asserted-Identity |
+| `SIP_DIAL_FORMAT` | how destinations must be sent: `e164` (+20...), `digits` (20...), `intl00` (0020...) |
+| `SIP_REGISTER` | `true` if the account registers, `false` for IP-authenticated trunks |
+| `SIP_DIAL_PREFIX` | only if Localphone requires a prefix to withhold caller ID |
+
+**To confirm with Localphone before the first real call:** does it honour RFC 3325 privacy
+(`From: Anonymous` + `P-Asserted-Identity` + `Privacy: id`), and does the withheld caller ID reach the destination networks you need?
+
+Then set `DEMO_MODE=false` and redeploy. Within about a minute the VM pulls the new `pjsip_provider.conf` and reloads PJSIP.
 Check with `asterisk -rx "pjsip show registrations"`.
 
 ## Replacing Localphone with another provider
@@ -144,6 +151,15 @@ Nothing in Asterisk or the UI changes. If a carrier doesn't show "Private" on so
 
 ## Health
 `GET /api/health` returns `{ app, database, voiceServer, sipProvider, provider, demoMode }` with no secrets. `/admin/system` shows the same information.
+
+## Security notes
+- Caller ID: `POST /api/calls` is a strict schema (only `destination` + `callerIdentity: "private"`). The identity number comes only from `SIP_FROM_NUMBER`. WebRTC endpoints have `trust_id_inbound=no`.
+- Dialing: the browser can only dial a 128-bit one-time token. The token is bound to the caller's authenticated SIP endpoint, expires after 60 s and can be used once. The dialplan accepts only `pc` + 32 hex characters.
+- Limits: concurrency is serialized with a per-user advisory lock. Every live call gets a hard duration cap after answer (`Dial S()`), set to the smaller of the remaining daily minutes and `MAX_CALL_SECONDS`.
+- CDR: `/api/voice/*` requires `VOICE_SHARED_SECRET` (timing-safe compare). CDRs are idempotent per `UNIQUEID`, and a call can only be finalized once.
+- The Asterisk ARI and metrics endpoints are not loaded, so port 8089 only serves `/ws` and `/httpstatus`.
+- `/api/voice/config` returns the trunk password to anyone holding `VOICE_SHARED_SECRET`. Keep that secret strong, only use HTTPS, and rotate it together with the trunk password if it leaks. Asterisk verbose logs print the secret header, so keep `/var/log/asterisk` root/asterisk-only.
+- The login rate limit is per instance, in memory. Session JWTs last 12 h. Disabling a user takes effect immediately because the session user is re-loaded from the DB on every request.
 
 ## Troubleshooting
 | Symptom | Check |

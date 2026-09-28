@@ -12,6 +12,8 @@ export interface ProviderConfig {
   dialFormat?: DialFormat;
   dialPrefix?: string;
   register?: boolean;
+  /** Required env vars that were not set (adapter has no verified default). */
+  missingRequired?: string[];
 }
 
 /**
@@ -22,6 +24,8 @@ export interface ProviderAdapter {
   id: string;
   displayName: string;
   defaults: Partial<ProviderConfig>;
+  /** Env vars that must be set explicitly (no trusted defaults for this provider). */
+  requiredEnv?: string[];
   /** How privacy (CLIR) is requested upstream. rfc3325 = Privacy: id + PAI, anonymous From. */
   privacyMethod: "rfc3325";
 }
