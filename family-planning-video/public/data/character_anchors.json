@@ -1,0 +1,62 @@
+{
+  "fatima": {
+    "file": "characters/clean/fatima.png",
+    "size_px": [
+      319,
+      1148
+    ],
+    "mouth_anchor_px": [
+      155.4,
+      122.7
+    ],
+    "mouth_anchor_normalized": [
+      0.4872,
+      0.1069
+    ],
+    "skin_rgb": [
+      246,
+      175,
+      139
+    ]
+  },
+  "ghozlan": {
+    "file": "characters/clean/ghozlan.png",
+    "size_px": [
+      350,
+      1145
+    ],
+    "mouth_anchor_px": [
+      178.0,
+      123.1
+    ],
+    "mouth_anchor_normalized": [
+      0.5085,
+      0.1075
+    ],
+    "skin_rgb": [
+      234,
+      157,
+      120
+    ]
+  },
+  "dr_heba": {
+    "file": "characters/clean/dr_heba.png",
+    "size_px": [
+      343,
+      1168
+    ],
+    "mouth_anchor_px": [
+      165.7,
+      138.8
+    ],
+    "mouth_anchor_normalized": [
+      0.4832,
+      0.1188
+    ],
+    "skin_rgb": [
+      242,
+      168,
+      130
+    ]
+  }
+}

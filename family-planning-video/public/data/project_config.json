@@ -1,0 +1,14 @@
+{
+  "title": "Egyptian Family Planning Healthcare Explainer",
+  "resolution": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "duration_s": 67.47425,
+  "total_frames": 2025,
+  "audio_master": "audio/master/master_voice_48k_pcm24.wav",
+  "audio_is_immutable": true,
+  "style": "flat 2D pastel healthcare illustration",
+  "language": "Egyptian Arabic"
+}

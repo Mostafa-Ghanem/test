@@ -1,0 +1,4 @@
+node_modules/
+build/
+qc/stills/*.png
+!qc/stills/f0300.png

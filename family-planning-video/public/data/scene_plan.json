@@ -1,0 +1,90 @@
+[
+  {
+    "scene": 1,
+    "name": "Home / Hook",
+    "start": 0.0,
+    "end": 8.3,
+    "reference": "scene_references/01_home_reference.png",
+    "background": "backgrounds/home_night_1080x1920.png",
+    "speakers": [
+      "fatima"
+    ],
+    "notes": "Fatima beside crying baby; slow push-in; worried/tired."
+  },
+  {
+    "scene": 2,
+    "name": "Clinic / Nurse + Fatima",
+    "start": 8.3,
+    "end": 17.48,
+    "reference": "scene_references/02_clinic_support_reference.png",
+    "background": "backgrounds/clinic_1080x1920.png",
+    "speakers": [
+      "ghozlan",
+      "fatima"
+    ],
+    "notes": "Ghozlan comforting hand; then Fatima asks what to do."
+  },
+  {
+    "scene": 3,
+    "name": "Doctor enters / surprise",
+    "start": 17.48,
+    "end": 25.4,
+    "reference": "scene_references/03_clinic_doctor_reference.png",
+    "background": "backgrounds/clinic_1080x1920.png",
+    "speakers": [
+      "dr_heba",
+      "fatima"
+    ],
+    "notes": "Dr Heba explains pregnancy before cycle; Fatima reacts."
+  },
+  {
+    "scene": 4,
+    "name": "Methods explainer",
+    "start": 25.4,
+    "end": 39.96,
+    "reference": "scene_references/04_methods_icons_reference.png",
+    "background": "backgrounds/clinic_1080x1920.png",
+    "speakers": [
+      "dr_heba"
+    ],
+    "notes": "Icons appear sequentially: IUD, pills, injection, implant, breastfeeding heart."
+  },
+  {
+    "scene": 5,
+    "name": "Choice + spacing",
+    "start": 39.96,
+    "end": 52.25,
+    "reference": "scene_references/05_family_vignette_reference.png",
+    "background": "backgrounds/clinic_1080x1920.png",
+    "speakers": [
+      "ghozlan",
+      "fatima",
+      "dr_heba"
+    ],
+    "notes": "Supportive talk; Fatima relief; family spacing vignette."
+  },
+  {
+    "scene": 6,
+    "name": "Health unit exterior",
+    "start": 52.25,
+    "end": 57.51,
+    "reference": "scene_references/06_exterior_reference.png",
+    "background": "backgrounds/health_unit_exterior_1080x1920.png",
+    "speakers": [
+      "ghozlan"
+    ],
+    "notes": "All three at entrance; Ghozlan addresses viewer."
+  },
+  {
+    "scene": 7,
+    "name": "End card",
+    "start": 57.51,
+    "end": 67.47425,
+    "reference": "scene_references/07_end_card_reference.png",
+    "background": "backgrounds/end_card_mint_1080x1920.png",
+    "speakers": [
+      "narrator"
+    ],
+    "notes": "No visible speaker; keep center empty for logos."
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "fps": 30,
+  "duration_s": 67.47425,
+  "noise_floor_rms": 0.002356755221262574,
+  "speech_reference_rms": 0.11809931099414828,
+  "mouth_states": {
+    "0": "closed",
+    "1": "small",
+    "2": "medium",
+    "3": "open"
+  }
+}

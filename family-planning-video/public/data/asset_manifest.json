@@ -1,0 +1,185 @@
+{
+  "pack": "Family_Planning_Motion_Asset_Pack_29MB",
+  "purpose": "Claude Code / Remotion production pack",
+  "authoritative_audio": "audio/master/master_voice_48k_pcm24.wav",
+  "authoritative_lipsync": "audio/analysis/lip_sync_30fps.csv",
+  "file_count": 44,
+  "files": [
+    {
+      "path": "COMPACT_PACK_INFO.md",
+      "size_bytes": 1000
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 1648
+    },
+    {
+      "path": "docs/ARABIC_SCRIPT.md",
+      "size_bytes": 2506
+    },
+    {
+      "path": "docs/CONTINUITY_BIBLE.md",
+      "size_bytes": 1137
+    },
+    {
+      "path": "docs/MASTER_PROMPT_CLAUDE.md",
+      "size_bytes": 3428
+    },
+    {
+      "path": "backgrounds/clinic_1080x1920.png",
+      "size_bytes": 13285
+    },
+    {
+      "path": "backgrounds/end_card_mint_1080x1920.png",
+      "size_bytes": 1395402
+    },
+    {
+      "path": "backgrounds/health_unit_exterior_1080x1920.png",
+      "size_bytes": 14241
+    },
+    {
+      "path": "backgrounds/home_night_1080x1920.png",
+      "size_bytes": 15784
+    },
+    {
+      "path": "data/character_anchors.json",
+      "size_bytes": 870
+    },
+    {
+      "path": "data/project_config.json",
+      "size_bytes": 344
+    },
+    {
+      "path": "data/scene_plan.json",
+      "size_bytes": 2390
+    },
+    {
+      "path": "data/transcript.json",
+      "size_bytes": 3272
+    },
+    {
+      "path": "characters/mouth_shapes/dr_heba_mouth_0.png",
+      "size_bytes": 3814
+    },
+    {
+      "path": "characters/mouth_shapes/dr_heba_mouth_1.png",
+      "size_bytes": 3861
+    },
+    {
+      "path": "characters/mouth_shapes/dr_heba_mouth_2.png",
+      "size_bytes": 3862
+    },
+    {
+      "path": "characters/mouth_shapes/dr_heba_mouth_3.png",
+      "size_bytes": 3822
+    },
+    {
+      "path": "characters/mouth_shapes/fatima_mouth_0.png",
+      "size_bytes": 3823
+    },
+    {
+      "path": "characters/mouth_shapes/fatima_mouth_1.png",
+      "size_bytes": 3885
+    },
+    {
+      "path": "characters/mouth_shapes/fatima_mouth_2.png",
+      "size_bytes": 3881
+    },
+    {
+      "path": "characters/mouth_shapes/fatima_mouth_3.png",
+      "size_bytes": 3823
+    },
+    {
+      "path": "characters/mouth_shapes/ghozlan_mouth_0.png",
+      "size_bytes": 3864
+    },
+    {
+      "path": "characters/mouth_shapes/ghozlan_mouth_1.png",
+      "size_bytes": 3907
+    },
+    {
+      "path": "characters/mouth_shapes/ghozlan_mouth_2.png",
+      "size_bytes": 3908
+    },
+    {
+      "path": "characters/mouth_shapes/ghozlan_mouth_3.png",
+      "size_bytes": 3837
+    },
+    {
+      "path": "characters/clean/dr_heba.png",
+      "size_bytes": 503420
+    },
+    {
+      "path": "characters/clean/fatima.png",
+      "size_bytes": 517092
+    },
+    {
+      "path": "characters/clean/ghozlan.png",
+      "size_bytes": 533965
+    },
+    {
+      "path": "scene_references/00_character_style_reference.png",
+      "size_bytes": 2513944
+    },
+    {
+      "path": "scene_references/01_home_reference.png",
+      "size_bytes": 1807591
+    },
+    {
+      "path": "scene_references/02_clinic_support_reference.png",
+      "size_bytes": 1682344
+    },
+    {
+      "path": "scene_references/03_clinic_doctor_reference.png",
+      "size_bytes": 1684015
+    },
+    {
+      "path": "scene_references/04_methods_icons_reference.png",
+      "size_bytes": 1728536
+    },
+    {
+      "path": "scene_references/05_family_vignette_reference.png",
+      "size_bytes": 1806096
+    },
+    {
+      "path": "scene_references/06_exterior_reference.png",
+      "size_bytes": 1617213
+    },
+    {
+      "path": "scene_references/07_end_card_reference.png",
+      "size_bytes": 1150701
+    },
+    {
+      "path": "icons/breastfeeding_heart.svg",
+      "size_bytes": 347
+    },
+    {
+      "path": "icons/implant.svg",
+      "size_bytes": 170
+    },
+    {
+      "path": "icons/injection.svg",
+      "size_bytes": 282
+    },
+    {
+      "path": "icons/iud.svg",
+      "size_bytes": 309
+    },
+    {
+      "path": "icons/pills.svg",
+      "size_bytes": 621
+    },
+    {
+      "path": "audio/analysis/envelope_summary.json",
+      "size_bytes": 228
+    },
+    {
+      "path": "audio/analysis/lip_sync_30fps.csv",
+      "size_bytes": 68594
+    },
+    {
+      "path": "audio/master/master_voice_48k_pcm24.wav",
+      "size_bytes": 9716400
+    }
+  ]
+}
