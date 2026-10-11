@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tiffany — Social, Content & Motion Case Study | ShowNova</title>
+<meta name="description" content="See how ShowNova developed Tiffany's visual presence across social media, campaign creative, brand-profile material and motion content.">
+<link rel="canonical" href="https://shownova.com.sa/work/tiffany">
+<link rel="preload" as="image" href="/assets/work/tiffany/social/tiffany-social-03.webp">
+<style>
+:root{
+  --turq:#10B2B4;--aqua:#22BEBA;--mid:#23918E;--deep:#0F5C5A;
+  --ink:#0E1111;--soft:#9ED5D4;--paper:#F7F8F8;
+  --pad:clamp(24px,5vw,72px);--max:1320px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--paper);font-family:inherit,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--turq);display:flex;align-items:center;gap:14px}
+.eyebrow::before{content:"";width:36px;height:1px;background:var(--turq)}
+h1,h2{font-weight:500;letter-spacing:-.02em;line-height:1.05}
+h2{font-size:clamp(32px,4.6vw,64px);max-width:16ch;margin:22px 0 26px}
+p.body{max-width:62ch;color:rgba(247,248,248,.72);font-size:clamp(16px,1.25vw,18px)}
+section{position:relative}
+.sec{padding:clamp(96px,14vw,200px) 0}
+
+/* media frame with graceful placeholder if asset not yet uploaded */
+.frame{position:relative;overflow:hidden;background:
+  radial-gradient(120% 90% at 20% 10%,var(--mid) 0,transparent 55%),
+  linear-gradient(135deg,var(--deep),var(--ink));}
+.frame img,.frame video{transition:transform 1.6s var(--ease)}
+.frame:hover img,.frame:hover video{transform:scale(1.025)}
+.frame figcaption{position:absolute;left:16px;bottom:14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,248,248,.7)}
+
+/* HERO */
+.hero{min-height:100svh;display:grid;align-items:end;padding:120px 0 56px;isolation:isolate}
+.hero .bg{position:absolute;inset:0 0 0 38%;z-index:-1}
+.hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--ink) 0,rgba(14,17,17,.55) 35%,transparent 70%),linear-gradient(0deg,var(--ink),transparent 40%)}
+.hero h1{font-size:clamp(72px,17vw,260px);letter-spacing:-.045em;margin:28px 0 18px;line-height:.85}
+.hero .lead{font-size:clamp(22px,2.6vw,36px);max-width:18ch;line-height:1.2}
+.hero .sub{margin-top:22px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px}
+.chips li{list-style:none;border:1px solid rgba(158,213,212,.35);padding:9px 16px;border-radius:999px;font-size:13px;letter-spacing:.04em}
+.meta{margin-top:48px;display:flex;gap:40px;font-size:12px;color:rgba(247,248,248,.5);text-transform:uppercase;letter-spacing:.14em}
+.scroll{position:absolute;right:var(--pad);bottom:56px;width:1px;height:80px;background:rgba(158,213,212,.25);overflow:hidden}
+.scroll::after{content:"";position:absolute;inset:0;background:var(--turq);animation:drop 2.4s var(--ease) infinite}
+@keyframes drop{from{transform:translateY(-100%)}to{transform:translateY(100%)}}
+
+/* grid helpers */
+.g12{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(16px,2vw,32px)}
+.split .label{grid-column:1/5}.split .content{grid-column:5/13}
+
+/* social */
+.social .big{grid-column:1/9;aspect-ratio:1}
+.social .s1{grid-column:9/13;aspect-ratio:1;align-self:end;transform:translateY(18%)}
+.social .s2{grid-column:2/6;aspect-ratio:1;margin-top:clamp(40px,8vw,120px)}
+.social .s3{grid-column:7/12;aspect-ratio:1;margin-top:clamp(120px,16vw,240px)}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1vw,16px);margin-top:clamp(80px,10vw,160px)}
+.trio .frame{aspect-ratio:1}
+
+/* full transition */
+.bleed{height:min(92vh,980px)}
+.bleed::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--ink),transparent 25%,transparent 70%,var(--ink))}
+.bleed .quote{position:absolute;left:var(--pad);bottom:12%;z-index:2;font-size:clamp(28px,4vw,56px);max-width:14ch;line-height:1.1}
+
+/* palette */
+.swatches{display:grid;grid-template-columns:repeat(6,1fr);margin-top:56px;border-radius:2px;overflow:hidden}
+.swatches div{aspect-ratio:3/4;padding:14px;display:flex;align-items:flex-end;font-size:11px;letter-spacing:.1em}
+
+/* motion */
+.motion{background:var(--ink)}
+.stage{aspect-ratio:16/9;margin-top:56px;border-top:1px solid var(--turq)}
+.num{font-size:12px;letter-spacing:.2em;color:var(--turq);margin-top:18px}
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.strip .frame{aspect-ratio:4/5}
+
+/* profile */
+.profile{background:var(--paper);color:var(--ink)}
+.profile p.body{color:rgba(14,17,17,.7)}
+.spreads{display:grid;gap:clamp(24px,4vw,64px);margin-top:72px}
+.spread{aspect-ratio:2/1;box-shadow:0 40px 80px -40px rgba(15,92,90,.45)}
+.spread:nth-child(2){width:78%;margin-left:auto}
+.spread:nth-child(3){width:88%}
+
+/* scope */
+.scope ul{list-style:none;border-top:1px solid rgba(158,213,212,.2)}
+.scope li{display:flex;justify-content:space-between;align-items:baseline;padding:28px 0;border-bottom:1px solid rgba(158,213,212,.2);font-size:clamp(22px,2.6vw,38px);transition:color .4s,padding .4s var(--ease)}
+.scope li span{font-size:12px;color:var(--turq);letter-spacing:.2em}
+.scope li:hover{color:var(--turq);padding-left:12px}
+
+/* closing */
+.closing{min-height:90vh;display:grid;align-items:center;text-align:left;isolation:isolate;overflow:hidden}
+.closing .bg{position:absolute;inset:0;z-index:-1;opacity:.45}
+.closing .bg::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 70% at 70% 50%,transparent,var(--ink) 75%)}
+.closing h2{font-size:clamp(40px,6.4vw,104px);max-width:13ch}
+.cta{display:inline-flex;align-items:center;gap:16px;margin-top:40px;padding:20px 34px;border-radius:999px;background:var(--turq);color:var(--ink);text-decoration:none;font-weight:600;letter-spacing:.02em;transition:background .3s,gap .4s var(--ease)}
+.cta:hover,.cta:focus-visible{background:var(--aqua);gap:26px}
+.cta:focus-visible,a:focus-visible{outline:2px solid var(--soft);outline-offset:4px}
+.next{display:flex;justify-content:space-between;align-items:center;padding:56px 0;border-top:1px solid rgba(158,213,212,.15);font-size:14px;color:rgba(247,248,248,.6)}
+.next a{text-decoration:none;font-size:clamp(20px,2vw,28px);color:var(--paper)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.mask{clip-path:inset(12% 0 12% 0);transition:clip-path 1.4s var(--ease)}
+.mask.in{clip-path:inset(0)}
+.eyebrow.rv{transition-delay:0s}.rv+.rv{transition-delay:.12s}
+
+@media (max-width:860px){
+  .hero .bg{inset:0}
+  .hero .bg::after{background:linear-gradient(0deg,var(--ink) 15%,rgba(14,17,17,.6) 60%,rgba(14,17,17,.3))}
+  .split .label,.split .content,.social .big,.social .s1,.social .s2,.social .s3{grid-column:1/-1;transform:none;margin-top:0}
+  .g12{gap:28px}
+  .trio,.strip{grid-template-columns:1fr;gap:24px}
+  .swatches{grid-template-columns:repeat(3,1fr)}
+  .spread,.spread:nth-child(n){width:100%;aspect-ratio:4/3}
+  .scroll{display:none}
+  .meta{gap:24px;flex-wrap:wrap}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv,.mask{opacity:1;transform:none;clip-path:none}
+  video[autoplay]{display:none}
+  video[autoplay]+img.poster{display:block}
+}
+img.poster{display:none}
+</style>
+</head>
+<body>
+<!-- ShowNova global header is rendered by the site layout -->
+<main>
+
+<section class="hero" aria-labelledby="t">
+  <div class="bg frame">
+    <video autoplay muted loop playsinline preload="metadata" poster="/assets/work/tiffany/social/tiffany-social-03.webp" aria-hidden="true">
+      <source src="/assets/work/tiffany/video/tiffany-commercial-01.webm" type="video/webm">
+      <source src="/assets/work/tiffany/video/tiffany-commercial-01.mp4" type="video/mp4">
+    </video>
+    <img class="poster" src="/assets/work/tiffany/social/tiffany-social-03.webp" alt="">
+  </div>
+  <div class="wrap">
+    <p class="eyebrow rv">Selected work / Social &amp; Motion</p>
+    <h1 id="t" class="rv">Tiffany</h1>
+    <p class="lead rv">A visual presence designed to move.</p>
+    <p class="body sub rv">A cohesive system of social creative, brand-profile material and commercial motion — built to keep Tiffany recognizable across every format.</p>
+    <ul class="chips rv" aria-label="Services"><li>Social Media</li><li>Content</li><li>Motion</li><li>Brand Profile</li></ul>
+    <div class="meta rv"><span>Creative &amp; campaign work</span><span>ShowNova</span></div>
+  </div>
+  <div class="scroll" aria-hidden="true"></div>
+</section>
+
+<section class="sec">
+  <div class="wrap g12 split">
+    <div class="label"><p class="eyebrow rv">Overview</p></div>
+    <div class="content">
+      <h2 class="rv">One brand. Multiple formats. One visual rhythm.</h2>
+      <p class="body rv">The Tiffany work spans static social content, profile material and commercial motion. Rather than display every asset produced, this case study shows how the visual language carries from one touchpoint to the next — from identity and tone, into social creative, then into motion.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <figure class="frame mask" style="aspect-ratio:16/10">
+    <img loading="lazy" src="/assets/work/tiffany/social/tiffany-social-02.webp" alt="Tiffany social artwork in aqua and teal on a soft grey surface">
+  </figure>
+</section>
+
+<section class="sec">
+  <div class="wrap g12 split">
+    <div class="label"><p class="eyebrow rv">Challenge</p></div>
+    <div class="content">
+      <h2 class="rv">Stay recognizable while the content keeps changing.</h2>
+      <p class="body rv">Campaign content has to adapt quickly: different messages, different formats and different moments. The challenge was to create enough visual consistency for Tiffany to remain recognizable without making every piece feel identical.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap social g12" aria-label="Social artwork">
+  <figure class="frame big mask"><img loading="lazy" src="/assets/work/tiffany/social/tiffany-social-04.webp" alt="Dark Tiffany social composition with aqua highlights"></figure>
+  <figure class="frame s1 mask"><img loading="lazy" src="/assets/work/tiffany/social/tiffany-social-05.webp" alt="Tiffany social artwork"></figure>
+</section>
+
+<section class="sec">
+  <div class="wrap g12 split">
+    <div class="label"><p class="eyebrow rv">Creative direction</p></div>
+    <div class="content">
+      <h2 class="rv">A clean teal-led language with room to shift in mood.</h2>
+      <p class="body rv">The system moves between bright, open compositions and darker, more dramatic moments. Turquoise and teal carry recognition, while near-black and soft neutral surfaces give the work contrast for both static and motion-led content.</p>
+      <div class="swatches rv" aria-label="Tiffany palette">
+        <div style="background:#10B2B4;color:#0E1111">#10B2B4</div>
+        <div style="background:#22BEBA;color:#0E1111">#22BEBA</div>
+        <div style="background:#23918E">#23918E</div>
+        <div style="background:#0F5C5A">#0F5C5A</div>
+        <div style="background:#9ED5D4;color:#0E1111">#9ED5D4</div>
+        <div style="background:#F7F8F8;color:#0E1111">#F7F8F8</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="frame bleed" aria-label="Full-width artwork">
+  <img loading="lazy" src="/assets/work/tiffany/social/tiffany-social-03.webp" alt="Near-black and deep teal Tiffany artwork">
+  <p class="quote rv">Consistent enough to recognize. Varied enough to stay fresh.</p>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">Social</p>
+    <h2 class="rv">Built as a system, not a stack of posts.</h2>
+    <p class="body rv">Scale changes, cropped details and paired compositions reveal the consistency running through the set.</p>
+    <div class="social g12" style="margin-top:64px">
+      <figure class="frame s2 mask"><img loading="lazy" src="/assets/work/tiffany/social/tiffany-social-06.webp" alt="Tiffany social artwork"></figure>
+      <figure class="frame s3 mask"><img loading="lazy" src="/assets/work/tiffany/social/tiffany-social-07.webp" alt="Tiffany social artwork"></figure>
+    </div>
+    <div class="trio">
+      <figure class="frame mask"><img loading="lazy" src="/assets/work/tiffany/social/tiffany-social-08.webp" alt="Tiffany social artwork"></figure>
+      <figure class="frame mask"><img loading="lazy" src="/assets/work/tiffany/social/tiffany-social-09.webp" alt="Tiffany social artwork"></figure>
+      <figure class="frame mask"><img loading="lazy" src="/assets/work/tiffany/social/tiffany-social-10.webp" alt="Tiffany social artwork"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec motion">
+  <div class="wrap">
+    <p class="eyebrow rv">Motion</p>
+    <h2 class="rv">The visual language in motion.</h2>
+    <p class="body rv">Commercial video extends the same visual presence beyond static content — a cinematic break in the page.</p>
+    <figure class="frame stage mask">
+      <video muted loop playsinline preload="none" data-lazy poster="/assets/work/tiffany/social/tiffany-social-04.webp" aria-label="Tiffany commercial">
+        <source data-src="/assets/work/tiffany/video/tiffany-commercial-05.mp4" type="video/mp4">
+      </video>
+    </figure>
+    <p class="num">01 / MOTION</p>
+    <div class="strip">
+      <figure class="frame mask"><video muted loop playsinline preload="none" data-lazy aria-label="Tiffany commercial clip"><source data-src="/assets/work/tiffany/video/tiffany-commercial-02.mp4" type="video/mp4"></video><figcaption>02</figcaption></figure>
+      <figure class="frame mask"><video muted loop playsinline preload="none" data-lazy aria-label="Tiffany commercial clip"><source data-src="/assets/work/tiffany/video/tiffany-commercial-03.mp4" type="video/mp4"></video><figcaption>03</figcaption></figure>
+      <figure class="frame mask"><video muted loop playsinline preload="none" data-lazy aria-label="Tiffany commercial clip"><source data-src="/assets/work/tiffany/video/tiffany-commercial-04.mp4" type="video/mp4"></video><figcaption>04</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec profile">
+  <div class="wrap">
+    <p class="eyebrow rv">Profile</p>
+    <h2 class="rv">A longer-form expression of the brand.</h2>
+    <p class="body rv">The profile gives the visual system more space to breathe — presented here as selected editorial spreads.</p>
+    <div class="spreads">
+      <figure class="frame spread mask"><img loading="lazy" src="/assets/work/tiffany/profile/spread-01.webp" alt="Tiffany profile spread"></figure>
+      <figure class="frame spread mask"><img loading="lazy" src="/assets/work/tiffany/profile/spread-02.webp" alt="Tiffany profile spread"></figure>
+      <figure class="frame spread mask"><img loading="lazy" src="/assets/work/tiffany/profile/spread-03.webp" alt="Tiffany profile spread"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec scope">
+  <div class="wrap g12 split">
+    <div class="label"><p class="eyebrow rv">Scope</p></div>
+    <div class="content">
+      <h2 class="rv">What we delivered</h2>
+      <ul>
+        <li class="rv">Social media creative <span>01</span></li>
+        <li class="rv">Campaign content <span>02</span></li>
+        <li class="rv">Commercial motion <span>03</span></li>
+        <li class="rv">Brand-profile / brochure design <span>04</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="bg frame"><img loading="lazy" src="/assets/work/tiffany/social/tiffany-social-11.webp" alt=""></div>
+  <div class="wrap">
+    <p class="eyebrow rv">Next chapter</p>
+    <h2 class="rv">Designed to stay recognizable, built to keep moving.</h2>
+    <p class="body rv">A flexible visual system across social, profile and motion — with enough consistency to feel like one brand and enough range to keep every moment fresh.</p>
+    <a class="cta rv" href="https://wa.me/" data-shownova-contact>Start a project <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<nav class="wrap next" aria-label="More work">
+  <span>Next project</span><a href="/work">View all work →</a>
+</nav>
+</main>
+<!-- ShowNova global footer is rendered by the site layout -->
+
+<script>
+(()=>{
+  // hide broken images so the branded gradient placeholder shows until assets are uploaded
+  document.querySelectorAll('.frame img').forEach(i=>i.addEventListener('error',()=>i.style.opacity=0));
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const els=document.querySelectorAll('.rv,.mask');
+  if(reduce||!('IntersectionObserver'in window)){els.forEach(e=>e.classList.add('in'))}
+  else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});els.forEach(e=>io.observe(e))}
+  // lazy-load + play/pause videos in view
+  const vo=new IntersectionObserver(es=>es.forEach(({target:v,isIntersecting:on})=>{
+    if(on&&v.dataset.lazy!==undefined){v.querySelectorAll('source[data-src]').forEach(s=>s.src=s.dataset.src);v.load();delete v.dataset.lazy}
+    if(reduce)return; on?v.play().catch(()=>{}):v.pause();
+  }),{threshold:.3});
+  document.querySelectorAll('video').forEach(v=>vo.observe(v));
+  // light parallax on desktop only
+  if(!reduce&&matchMedia('(min-width:861px)').matches){
+    const bg=document.querySelector('.hero .bg');
+    addEventListener('scroll',()=>{bg.style.transform=`translateY(${scrollY*.15}px)`},{passive:true});
+  }
+})();
+</script>
+</body>
+</html>
